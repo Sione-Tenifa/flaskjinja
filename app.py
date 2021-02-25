@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template
 from flask_debugtoolbar import DebugToolbarExtension
-from random import randint, choice
+from random import randint, choice, sample 
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "DEBUG1989"
@@ -98,3 +98,18 @@ def get_greeting():
     return render_template("greet.html", username=username, compliment=nice_thing)
 
 COMPLIMENTS = ['Cool', "Clever", "Tenacious", "Awesome"]
+
+@app.route('/spell/<word>')
+def spell_word(word):
+    return render_template('spell_word.html', word=word)
+
+@app.route('/form2')
+def show_form_2():
+    return render_template("form_2.html")
+
+@app.route('/greet-2')
+def get_greeting_2():
+    username = request.args['username']
+    wants_compliments = request.args.get("wants_compliments")
+    nice_things = sample(COMPLIMENTS, 3)
+    return render_template('greet_2.html', username=username, wants_complments=wants_compliments, compliments=nice_things)
