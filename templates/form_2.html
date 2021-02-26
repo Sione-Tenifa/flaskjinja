@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>form 2</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block title %} Greeter form {% endblock %}
+{% block content %}
     <h1>Greeter Form V2</h1>
     <form action="/greet-2">
         <input type="text" name="username" placeholder="Your name">
@@ -13,5 +8,4 @@
         <input id="compliments" type="checkbox" name="wants_complimets" >
         <button>Submit!</button>
     </form>
-</body>
-</html>
+{% endblock %}

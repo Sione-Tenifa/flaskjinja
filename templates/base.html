@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <nav>
+        <a href="">Pretend I am a navbar    </a>
+        <a href=""> {% block page_name %}{% endblock %} </a>
+    </nav>
+
+    {% block content %} {% endblock %}
+    <footer>
+        Pretend I am a footer
+    </footer>
+</body>
+</html>
