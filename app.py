@@ -1,10 +1,30 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect
 from flask_debugtoolbar import DebugToolbarExtension
 from random import randint, choice, sample 
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "DEBUG1989"
+app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 debug = DebugToolbarExtension(app)
+
+MOVIES = ['Amadeasu', 'Chicken Run', "Sandlot"]
+
+@app.route('/movies')
+def show_all_movies():
+    return render_template('movies.html', movies=MOVIES)
+
+@app.route('/movies/new', methods=["POST"])
+def add_movies():
+    title = request.form['title']
+    # ADD to pretend DB
+    MOVIES.append(title)
+    return redirect('/movies')
+
+
+
+@app.route('/old-home-page')
+def redirect_to_home():
+    return redirect("/")
 
 @app.route('/')
 def home_page():
