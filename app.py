@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect
+from flask import Flask, request, render_template, redirect, flash
 from flask_debugtoolbar import DebugToolbarExtension
 from random import randint, choice, sample 
 
@@ -18,12 +18,14 @@ def add_movies():
     title = request.form['title']
     # ADD to pretend DB
     MOVIES.append(title)
+    flash("Created your movie!")
     return redirect('/movies')
 
 
 
 @app.route('/old-home-page')
 def redirect_to_home():
+    flash('That page has moved! This is our new home page!')
     return redirect("/")
 
 @app.route('/')
